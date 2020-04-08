@@ -45,14 +45,18 @@ List<VccDetails> vccDetails=[];
 
 
 ///more
-List<String> moreOptionAdmin=["Add animal","Add Owner","Add emplyee","Search","Update","Missing","Slaugtered","Died","Vaccine"];
-List<String> moreOptionEmp=["Add animal","Search","Update","Missing","Slaugtered","Died","Vaccine"];
-List<String> moreOption=["Add animal","Add Owner","Add emplyee","Search","Update","Missing","Slaugtered","Died","Vaccine"];
+List<String> moreOptionAdmin=["Add animal","Add multiple animal","Add Owner","Add emplyee","Search","Update","Missing","Slaugtered","Died","Vaccine"];
+List<String> moreOptionEmp=["Add animal","Add multiple animal","Search","Update","Missing","Slaugtered","Died","Vaccine"];
+List<String> moreOption=["Add animal","Add multiple animal","Add Owner","Add emplyee","Search","Update","Missing","Slaugtered","Died","Vaccine"];
 String chooseMoreOption=moreOption[0];
 
 List<String> subAnimal=goatAnimal;
+List<String> subAnimalForMultiAdd=goatAnimal;
 String chooseAnimal=aAnimal[0];
 String chooseSubAnimal=subAnimal[0];
+
+String chooseAnimalForMultiAdd=aAnimal[0];
+String chooseSubAnimalForMultiAdd=subAnimalForMultiAdd[0];
 
 List<String> sex=["Male","Female"];
 String chooseSex=sex[0];
@@ -61,6 +65,11 @@ String chooseSexForUpdate=sex[0];
 List<String> ownerList=[];
 String chooseOwner;
 String chooseOwnerForUpdate;
+String chooseOwnerForMultiAdd;
+
+String numberOfMaleForMultiAdd="0";
+String numberOfFemaleForMultiAdd="0";
+String numberOfBabyForMultiAdd="0";
 
 List<Anim> srchData=[];
 
@@ -103,6 +112,7 @@ List<String> animalId=[];
 String chooseAnimalId;
 
 bool addanimalVisibility=true;
+bool addMultianimalVisibility=false;
 bool addownerVisibility=false;
 bool addempVisibility=false;
 bool searchVisibility=false;

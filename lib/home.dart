@@ -562,7 +562,7 @@ class Home_State extends State<Home>{
 
 
                                         },
-                                        child: Text(loginType+" :"+loginName)
+                                        child: Text(loginName)
                                     )
                                 ),
                                 Flexible(

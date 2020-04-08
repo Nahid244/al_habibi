@@ -66,34 +66,40 @@ class Root_state extends State<Root>{
     listofSheepBarbi.clear();
     listofSheepHarrayat.clear();
 
-
-    String url = 'https://alhabibifarm.secretdevbd.com/API/AnimalsByCategory';
+    String urll = 'https://alhabibifarm.secretdevbd.com/API/AllAnimals';
+   // String url = 'https://alhabibifarm.secretdevbd.com/API/AnimalsByCategory';
     String url2='https://alhabibifarm.secretdevbd.com/API/AllOwner';
     String url3='https://alhabibifarm.secretdevbd.com/API/CommonData';
-    String url4='https://alhabibifarm.secretdevbd.com/API/VaccineHistory';
+    String url4='https://alhabibifarm.secretdevbd.com/API/AllVaccineHistory';
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"category": "GOAT"}';
-    String json1 = '{"category": "HORSE"}';
-    String json2 = '{"category": "SHEEP"}';
-    String json3 = '{"category": "CAMEL"}';
-    var response = await http.post(url, headers: headers, body: json);
-    var response1 = await http.post(url, headers: headers, body: json1);
-    var response2 = await http.post(url, headers: headers, body: json2);
-    var response3 = await http.post(url, headers: headers, body: json3);// check the status code for the result
+//    String json = '{"category": "GOAT"}';
+//    String json1 = '{"category": "HORSE"}';
+//    String json2 = '{"category": "SHEEP"}';
+//    String json3 = '{"category": "CAMEL"}';
+
+    var res = await http.post(urll, headers: headers);
+
+
+
+
+//    var response1 = await http.post(url, headers: headers, body: json1);
+//    var response2 = await http.post(url, headers: headers, body: json2);
+//    var response3 = await http.post(url, headers: headers, body: json3);// check the status code for the result
     var response4 = await http.post(url2, headers: headers);
     var response5 = await http.post(url3, headers: headers);
-    int statusCode = response
-        .statusCode; // this API passes back the id of the new item added to the body
-    String body = response.body;
-    String body1 = response1.body;
-    String body2 = response2.body;
-    String body3 = response3.body;
+//    int statusCode = response
+//        .statusCode; // this API passes back the id of the new item added to the body
+//    String body = response.body;
+//    String body1 = response1.body;
+//    String body2 = response2.body;
+//    String body3 = response3.body;
 
 
-    var data=jsonDecode(body) ;
-    var data1=jsonDecode(body1) ;
-    var data2=jsonDecode(body2) ;
-    var data3=jsonDecode(body3) ;
+    var data=jsonDecode(res.body) ;
+    print(data);
+//    var data1=jsonDecode(body1) ;
+//    var data2=jsonDecode(body2) ;
+//    var data3=jsonDecode(body3) ;
     var data4=jsonDecode(response4.body) ;
     var data5=jsonDecode(response5.body) ;
 
@@ -122,7 +128,6 @@ class Root_state extends State<Root>{
     for(var i in data4["data"]){
       ownerList.add(i["OwnerName"]);
     }
-
     for(var i in data["data"]){
       animalTag.add(i["AnimalTag"]);
       animalId.add(i["AnimalTag"]);
@@ -135,11 +140,12 @@ class Root_state extends State<Root>{
       if(!ownerList.contains(i["AnimalOwner"])){
         ownerList.add(i["AnimalOwner"]);
       }
-      if(i["AnimalBreed"]=="OMANI"){
+      if(i["AnimalCategory"]=="GOAT"){
+        if(i["AnimalBreed"]=="OMANI"){
         listofGoatsOmani.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SHAMMAL"){
-        print(i);
+
 
         listofGoatsShammal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
 
@@ -149,40 +155,19 @@ class Root_state extends State<Root>{
         listofGoatsNgoat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       noOfGoats++;
-    }
-    for(var i in data1["data"]){
-      animalTag.add(i["AnimalTag"]);
-      animalId.add(i["AnimalTag"]);
-      if(i["AnimalSex"]=="Male"){
-        fatherList.add(i["AnimalTag"]);
       }
-      else{
-        motherList.add(i["AnimalTag"]);
-      }
-      if(!ownerList.contains(i["AnimalOwner"])){
-        ownerList.add(i["AnimalOwner"]);
-      }
-      if(i["AnimalBreed"]=="BEAUTY"){
+      else if(i["AnimalCategory"]=="HORSE"){
+        if(i["AnimalBreed"]=="BEAUTY"){
         listofHorseBeauty.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else {
         listofHorseRacing.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       noOfHorse++;
-    }
-    for(var i in data2["data"]){
-      animalTag.add(i["AnimalTag"]);
-      animalId.add(i["AnimalTag"]);
-      if(i["AnimalSex"]=="Male"){
-        fatherList.add(i["AnimalTag"]);
+
       }
-      else{
-        motherList.add(i["AnimalTag"]);
-      }
-      if(!ownerList.contains(i["AnimalOwner"])){
-        ownerList.add(i["AnimalOwner"]);
-      }
-      if(i["AnimalBreed"]=="TALLAL"){
+      else if(i["AnimalCategory"]=="SHEEP"){
+        if(i["AnimalBreed"]=="TALLAL"){
         listofSheepTallal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SIMON"){
@@ -202,27 +187,118 @@ class Root_state extends State<Root>{
       }
 
       noOfSheeps++;
-    }
-    for(var i in data3["data"]){
-      animalTag.add(i["AnimalTag"]);
-      animalId.add(i["AnimalTag"]);
-      if(i["AnimalSex"]=="Male"){
-        fatherList.add(i["AnimalTag"]);
       }
       else{
-        motherList.add(i["AnimalTag"]);
-      }
-      if(!ownerList.contains(i["AnimalOwner"])){
-        ownerList.add(i["AnimalOwner"]);
-      }
-      if(i["AnimalBreed"]=="BIG"){
+        if(i["AnimalBreed"]=="BIG"){
         listofCamelBig.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else {
         listofCamelSmall.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       noOfCamel++;
+      }
     }
+
+//    for(var i in data["data"]){
+//      animalTag.add(i["AnimalTag"]);
+//      animalId.add(i["AnimalTag"]);
+//      if(i["AnimalSex"]=="Male"){
+//        fatherList.add(i["AnimalTag"]);
+//      }
+//      else{
+//        motherList.add(i["AnimalTag"]);
+//      }
+//      if(!ownerList.contains(i["AnimalOwner"])){
+//        ownerList.add(i["AnimalOwner"]);
+//      }
+//      if(i["AnimalBreed"]=="OMANI"){
+//        listofGoatsOmani.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else if(i["AnimalBreed"]=="SHAMMAL"){
+//
+//
+//        listofGoatsShammal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//
+//      }
+//      else{
+//
+//        listofGoatsNgoat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      noOfGoats++;
+//    }
+//    for(var i in data1["data"]){
+//      animalTag.add(i["AnimalTag"]);
+//      animalId.add(i["AnimalTag"]);
+//      if(i["AnimalSex"]=="Male"){
+//        fatherList.add(i["AnimalTag"]);
+//      }
+//      else{
+//        motherList.add(i["AnimalTag"]);
+//      }
+//      if(!ownerList.contains(i["AnimalOwner"])){
+//        ownerList.add(i["AnimalOwner"]);
+//      }
+//      if(i["AnimalBreed"]=="BEAUTY"){
+//        listofHorseBeauty.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else {
+//        listofHorseRacing.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      noOfHorse++;
+//    }
+//    for(var i in data2["data"]){
+//      animalTag.add(i["AnimalTag"]);
+//      animalId.add(i["AnimalTag"]);
+//      if(i["AnimalSex"]=="Male"){
+//        fatherList.add(i["AnimalTag"]);
+//      }
+//      else{
+//        motherList.add(i["AnimalTag"]);
+//      }
+//      if(!ownerList.contains(i["AnimalOwner"])){
+//        ownerList.add(i["AnimalOwner"]);
+//      }
+//      if(i["AnimalBreed"]=="TALLAL"){
+//        listofSheepTallal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else if(i["AnimalBreed"]=="SIMON"){
+//        listofSheepSimon.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else if(i["AnimalBreed"]=="SALEH"){
+//        listofSheepSaleh.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else if(i["AnimalBreed"]=="ROBBY"){
+//        listofSheepRobby.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else if(i["AnimalBreed"]=="HARRYAT"){
+//        listofSheepHarrayat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else{
+//        listofSheepBarbi.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//
+//      noOfSheeps++;
+//    }
+//    for(var i in data3["data"]){
+//      animalTag.add(i["AnimalTag"]);
+//      animalId.add(i["AnimalTag"]);
+//      if(i["AnimalSex"]=="Male"){
+//        fatherList.add(i["AnimalTag"]);
+//      }
+//      else{
+//        motherList.add(i["AnimalTag"]);
+//      }
+//      if(!ownerList.contains(i["AnimalOwner"])){
+//        ownerList.add(i["AnimalOwner"]);
+//      }
+//      if(i["AnimalBreed"]=="BIG"){
+//        listofCamelBig.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      else {
+//        listofCamelSmall.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+//      }
+//      noOfCamel++;
+//    }
     listOfGoat.add(listofGoatsOmani);
     listOfGoat.add(listofGoatsShammal);
     listOfGoat.add(listofGoatsNgoat);
@@ -240,28 +316,29 @@ class Root_state extends State<Root>{
     listOfSheep.add(listofSheepBarbi);
     listOfSheep.add(listofSheepHarrayat);
 
-    if(ownerList.isEmpty){
+  //  if(ownerList.isEmpty){
       ownerList.add("None");
      // ownerList.add("empty2");
-    }
-    if(fatherList.isEmpty){
+  //  }
+   // if(fatherList.isEmpty){
       fatherList.add("None");
      // fatherList.add("empty2");
-    }
-    if(motherList.isEmpty){
+  //  }
+   // if(motherList.isEmpty){
       motherList.add("None");
     //  motherList.add("empty2");
-    }
-    if(animalTag.isEmpty){
+   // }
+  //  if(animalTag.isEmpty){
       animalTag.add("None");
      // animalTag.add("empty2");
-    }
-    if(animalId.isEmpty){
+   // }
+   // if(animalId.isEmpty){
       animalId.add("None");
      // animalId.add("empty2");
-    }
+   // }
 
     chooseOwner=ownerList[0];
+    chooseOwnerForMultiAdd=ownerList[0];
     chooseFather=fatherList[0];
     chooseMother=motherList[0];
     chooseAnimalId=animalId[0];
@@ -285,18 +362,22 @@ class Root_state extends State<Root>{
     vaccineVisibility=false;
     diedVisibility=false;
     srchResultVisibility=false;
+    print("yesss111");
 
-
-    for(var i in animalTag){
-      String json4 = '{"AnimalTag": "'+i+'"}';
-      var response6 = await http.post(url4, headers: headers,body: json4);
+//    for(var i in animalTag){
+//      String json4 = '{"AnimalTag": "'+i+'"}';
+      var response6 = await http.post(url4, headers: headers);
       //var bod=response6.body;
       var dat=jsonDecode(response6.body);
-      for(var j in dat["data"]){
-        vccDetails.add(VccDetails(IfNull(j["AnimalTag"]),IfNull(j["VDate"]),IfNull(j["VDetails"]),j["VID"]));
+      print(response6.body);
+      for(var j in dat["data"]) {
+        vccDetails.add(VccDetails(
+            IfNull(j["AnimalTag"]), IfNull(j["VDate"]), IfNull(j["VDetails"]),
+            j["VID"]));
       }
-    }
-
+//      }
+//    }
+    print("yesss");
 
     setState(() {
       loadedCountData=true;
@@ -386,53 +467,4 @@ class Root_state extends State<Root>{
   }
 
 }
-/*
-* Container(
-                color: Colors.white,
-                child: MaterialApp(
-                  home: Scaffold(
 
-                    body: Bottom_nav_stat_list.elementAt(bottom_nav_selectedIdx),
-                    bottomNavigationBar: BottomNavigationBar(
-                      backgroundColor:Color.fromRGBO(88,161,69,1),
-                      unselectedItemColor: Color.fromRGBO(228,163,35,1),
-                      type: BottomNavigationBarType.fixed,
-                      selectedItemColor:Colors.white,
-                      items: const <BottomNavigationBarItem>[
-
-                        BottomNavigationBarItem(
-
-                            icon: Icon(Icons.home),
-                            title: Text("Home")
-                        ),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.adjust),
-                            title: Text("Goats")
-                        ),
-                        BottomNavigationBarItem(
-
-                            icon: Icon(Icons.adjust),
-                            title: Text("Horse")
-                        ),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.adjust),
-                            title: Text("Sheep")
-                        ),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.adjust),
-                            title: Text("Camel")
-                        ),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.more),
-                            title: Text("More")
-                        ),
-
-
-                      ],
-                      currentIndex: bottom_nav_selectedIdx,
-
-                      onTap: _onItemTapped,
-                    ),
-                  ),
-                )
-            ),*/

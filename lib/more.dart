@@ -43,6 +43,7 @@ class More_State extends State<More>{
                     chooseMoreOption=newValue;
                     if(newValue=="Add animal"){
                        addanimalVisibility=true;
+                       addMultianimalVisibility=false;
                      addownerVisibility=false;
                      addempVisibility=false;
                        searchVisibility=false;
@@ -55,8 +56,23 @@ class More_State extends State<More>{
                        srchResultVisibility=false;
                        alertVisibility=false;
 
-                    }else if(newValue=="Add Owner"){
+                    } else if(newValue=="Add multiple animal"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=true;
+                      addownerVisibility=false;
+                      addempVisibility=false;
+                      searchVisibility=false;
+                      updateVisibility=false;
+                      missingVisibility=false;
+                      slaughteredVisibility=false;
+                      vaccineVisibility=false;
+                      diedVisibility=false;
+                      srchResultVisibility=false;
+                      alertVisibility=false;
+                    }
+                    else if(newValue=="Add Owner"){
+                      addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       if(loginType=="ADMIN"){
                         addownerVisibility=true;
                         alertVisibility=false;
@@ -78,6 +94,7 @@ class More_State extends State<More>{
                     }
                     else if(newValue=="Add emplyee"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       if(loginType=="ADMIN"){
                         addempVisibility=true;
@@ -98,6 +115,7 @@ class More_State extends State<More>{
                     }
                     else if(newValue=="Search"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       addempVisibility=false;
                       searchVisibility=true;
@@ -111,6 +129,7 @@ class More_State extends State<More>{
                     }
                     else if(newValue=="Update"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       addempVisibility=false;
                       searchVisibility=false;
@@ -124,6 +143,7 @@ class More_State extends State<More>{
                     }
                     else if(newValue=="Missing"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       addempVisibility=false;
                       searchVisibility=false;
@@ -137,6 +157,7 @@ class More_State extends State<More>{
                     }
                     else if(newValue=="Slaugtered"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       addempVisibility=false;
                       searchVisibility=false;
@@ -150,6 +171,7 @@ class More_State extends State<More>{
                     }
                     else if(newValue=="Died"){
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       addempVisibility=false;
                       searchVisibility=false;
@@ -163,6 +185,7 @@ class More_State extends State<More>{
                     }
                     else {
                       addanimalVisibility=false;
+                      addMultianimalVisibility=false;
                       addownerVisibility=false;
                       addempVisibility=false;
                       searchVisibility=false;
@@ -233,7 +256,11 @@ class More_State extends State<More>{
                 visible: vaccineVisibility,
                 child: Vcc(),
               )
-
+,
+              Visibility(
+                visible: addMultianimalVisibility,
+                child: AddAnimalMulti(),
+              )
               ,
               Visibility(
                   visible: alertVisibility,
@@ -728,6 +755,7 @@ class AddAnimal_State extends State<AddAnimal>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -1253,6 +1281,7 @@ class AddOwner_State extends State<AddOwner>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -1351,6 +1380,7 @@ class AddEmp_State extends State<AddEmp>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -1603,6 +1633,7 @@ class Update_State extends State<Update>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully updated");
       }
       else{
         but_txt=but_txt3;
@@ -2064,6 +2095,7 @@ class Missing_State extends State<Missing>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -2303,6 +2335,7 @@ class Died_State extends State<Died>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -2564,6 +2597,7 @@ class Vcc_State extends State<Vcc>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -2822,6 +2856,7 @@ class Slau_State extends State<Slau>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
+        _showDialog(context,"successfully added");
       }
       else{
         but_txt=but_txt3;
@@ -3031,17 +3066,311 @@ class Slau_State extends State<Slau>{
   }
 
 }
-void _showDialog(BuildContext context) {
+
+class AddAnimalMulti extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return AddAnimalMulti_State();
+  }
+
+}
+class AddAnimalMulti_State extends State<AddAnimalMulti>{
+  static Widget but_txt = but_txt5;
+  BuildContext ctx;
+
+  _addAnimalMulti()async{
+
+    String url = 'https://alhabibifarm.secretdevbd.com/API/AddMultipleAnimal';
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"male": '+numberOfMaleForMultiAdd +',"female": '+numberOfFemaleForMultiAdd+',"baby": '+numberOfBabyForMultiAdd+',"cat": "'+chooseAnimalForMultiAdd+'","sub_cat": "'+chooseSubAnimalForMultiAdd+'","owner": "'+chooseOwnerForMultiAdd+'"}'; // make POST request
+    print(json);
+    var response = await http.post(url, headers: headers,
+        body: json); // check the status code for the result
+    int statusCode = response
+        .statusCode; // this API passes back the id of the new item added to the body
+    String body = response.body;
+    print(statusCode);
+    var data=jsonDecode(body);
+
+    setState(() {
+      if(data["status"]>0){
+        but_txt=but_txt4;
+        _showDialog(context,"successfully added");
+      }
+      else{
+        but_txt=but_txt3;
+      }
+    });
+
+
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    ctx=context;
+    // TODO: implement build
+    return Container(
+     child: Column(
+       children: <Widget>[
+         Container(
+           padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
+
+         ),
+         Row(
+           children: <Widget>[
+             Flexible(
+                 flex: 1,
+                 child: Center(
+                   child: Text("Catagory: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+                 )
+             ),
+             Flexible(
+                 flex: 1,
+                 child:   Center(
+                     child:DropdownButton<String>(
+                       value:chooseAnimalForMultiAdd ,
+                       icon: Icon(Icons.arrow_downward),
+                       iconSize: 24,
+                       elevation: 16,
+                       style: TextStyle(
+                           color: Colors.deepPurple
+                       ),
+                       underline: Container(
+                         height: 2,
+                         color: Colors.deepPurpleAccent,
+                       ),
+                       onChanged: (String newValue) {
+                         print(newValue);
+                         setState(() {
+                           chooseAnimalForMultiAdd= newValue;
+                           if(newValue=="GOAT"){
+                             subAnimalForMultiAdd=goatAnimal;
+                             // subAnimalChose=subAnimal[0];
+                           }
+                           else if(newValue=="HORSE"){
+                             subAnimalForMultiAdd=horseAnimal;
+                             // subAnimalChose=subAnimal[0];
+                           }
+                           else if(newValue=="SHEEP"){
+                             subAnimalForMultiAdd=sheepAnimal;
+                             // subAnimalChose=subAnimal[0];
+                           }
+                           else{
+                             subAnimalForMultiAdd=camelAnimal;
+                             // subAnimalChose=subAnimal[0];
+                           }
+                           chooseSubAnimalForMultiAdd=subAnimalForMultiAdd[0];
+
+                         });
+                       },
+                       items: aAnimal
+                           .map<DropdownMenuItem<String>>((String value) {
+                         return DropdownMenuItem<String>(
+                           value: value,
+                           child: Text(value),
+                         );
+                       })
+                           .toList(),
+                     )
+                 )
+             )
+           ],
+         ),
+         Container(
+           padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
+
+         ),
+         Row(
+           children: <Widget>[
+             Flexible(
+                 flex: 1,
+                 child: Center(
+                   child: Text("Breed: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+                 )
+             ),
+             Flexible(
+                 flex: 1,
+                 child:   Center(
+                     child:DropdownButton<String>(
+                       value:chooseSubAnimalForMultiAdd ,
+                       icon: Icon(Icons.arrow_downward),
+                       iconSize: 24,
+                       elevation: 16,
+                       style: TextStyle(
+                           color: Colors.deepPurple
+                       ),
+                       underline: Container(
+                         height: 2,
+                         color: Colors.deepPurpleAccent,
+                       ),
+                       onChanged: (String newValue) {
+                         // print(newValue);
+                         setState(() {
+                           chooseSubAnimalForMultiAdd = newValue;
+
+
+                         });
+                       },
+                       items: subAnimalForMultiAdd
+                           .map<DropdownMenuItem<String>>((String value) {
+                         return DropdownMenuItem<String>(
+                           value: value,
+                           child: Text(value),
+                         );
+                       })
+                           .toList(),
+                     )
+                 )
+             )
+           ],
+         ),
+         Container(
+           padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
+
+         ),
+         Row(
+           children: <Widget>[
+             Flexible(
+                 flex: 1,
+                 child: Center(
+                   child: Text("Owner: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+                 )
+             ),
+             Flexible(
+                 flex: 1,
+                 child:   Center(
+                     child:DropdownButton<String>(
+                       value:chooseOwnerForMultiAdd ,
+                       icon: Icon(Icons.arrow_downward),
+                       iconSize: 24,
+                       elevation: 16,
+                       style: TextStyle(
+                           color: Colors.deepPurple
+                       ),
+                       underline: Container(
+                         height: 2,
+                         color: Colors.deepPurpleAccent,
+                       ),
+                       onChanged: (String newValue) {
+                         // print(newValue);
+                         setState(() {
+                           chooseOwnerForMultiAdd = newValue;
+
+
+                         });
+                       },
+                       items: ownerList
+                           .map<DropdownMenuItem<String>>((String value) {
+                         return DropdownMenuItem<String>(
+                           value: value,
+                           child: Text(value),
+                         );
+                       })
+                           .toList(),
+                     )
+                 )
+             )
+           ],
+         ),
+         Container(
+             padding: EdgeInsets.only(left: 20,top: 20, right: 20),
+
+             child: TextField(
+               onChanged: (Text) {
+                 numberOfMaleForMultiAdd=Text.toString();
+               },
+               decoration: InputDecoration(
+                   prefixIcon: Icon(Icons.verified_user),
+                   filled: true,
+                   fillColor: Colors.white,
+                   border: InputBorder.none,
+                   hintText: 'Enter number of male'
+               ),
+             )
+
+         ),
+         Container(
+             padding: EdgeInsets.only(left: 20,top: 20, right: 20),
+
+             child: TextField(
+               onChanged: (Text) {
+                 numberOfFemaleForMultiAdd=Text.toString();
+               },
+               decoration: InputDecoration(
+                   prefixIcon: Icon(Icons.verified_user),
+                   filled: true,
+                   fillColor: Colors.white,
+                   border: InputBorder.none,
+                   hintText: 'Enter number of female'
+               ),
+             )
+
+         ),
+         Container(
+             padding: EdgeInsets.only(left: 20,top: 20, right: 20),
+
+             child: TextField(
+               onChanged: (Text) {
+                 numberOfBabyForMultiAdd=Text.toString();
+               },
+               decoration: InputDecoration(
+                   prefixIcon: Icon(Icons.verified_user),
+                   filled: true,
+                   fillColor: Colors.white,
+                   border: InputBorder.none,
+                   hintText: 'Enter number of baby'
+               ),
+             )
+
+         ),
+         Container(
+           padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+
+           child: FlatButton(
+
+             color: Colors.lightGreen,
+             textColor: Colors.white,
+             disabledColor: Colors.grey,
+             disabledTextColor: Colors.black,
+             padding: EdgeInsets.all(8.0),
+             splashColor: Colors.blueAccent,
+             shape: RoundedRectangleBorder(
+                 borderRadius: new BorderRadius.circular(10.0),
+                 side: BorderSide(color: Colors.black)
+             ),
+             onPressed: () {
+
+               setState(() {
+                 but_txt=but_txt2;
+               });
+               _addAnimalMulti();
+             },
+             child: but_txt,
+           ),
+
+         ),
+
+       ],
+     ),
+    );
+  }
+
+}
+
+
+void _showDialog(BuildContext context,String s) {
   // flutter defined function
   showDialog(
     context: context,
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text("Alert"),
+        title: new Text("Notification"),
 
         content:Container(
-          child: Text("Please select an image"),
+          child: Text(s),
         )
 
         ,
