@@ -66,10 +66,32 @@ class Root_state extends State<Root>{
     listofSheepBarbi.clear();
     listofSheepHarrayat.clear();
 
+    fatherListGoat.clear();
+    fatherListSheep.clear();
+    fatherListHorse.clear();
+    fatherListCamel.clear();
+
+    motherListGoat.clear();
+    motherListSheep.clear();
+    motherListHorse.clear();
+    motherListCamel.clear();
+
+    ownerList.add("None");
+    fatherListGoat.add("None");
+    fatherListSheep.add("None");
+    fatherListHorse.add("None");
+    fatherListCamel.add("None");
+
+    motherListGoat.add("None");
+    motherListSheep.add("None");
+    motherListHorse.add("None");
+    motherListCamel.add("None");
+
+
     String urll = 'https://alhabibifarm.secretdevbd.com/API/AllAnimals';
    // String url = 'https://alhabibifarm.secretdevbd.com/API/AnimalsByCategory';
     String url2='https://alhabibifarm.secretdevbd.com/API/AllOwner';
-    String url3='https://alhabibifarm.secretdevbd.com/API/CommonData';
+    //String url3='https://alhabibifarm.secretdevbd.com/API/CommonData';
     String url4='https://alhabibifarm.secretdevbd.com/API/AllVaccineHistory';
     Map<String, String> headers = {"Content-type": "application/json"};
 //    String json = '{"category": "GOAT"}';
@@ -86,7 +108,7 @@ class Root_state extends State<Root>{
 //    var response2 = await http.post(url, headers: headers, body: json2);
 //    var response3 = await http.post(url, headers: headers, body: json3);// check the status code for the result
     var response4 = await http.post(url2, headers: headers);
-    var response5 = await http.post(url3, headers: headers);
+  //  var response5 = await http.post(url3, headers: headers);
 //    int statusCode = response
 //        .statusCode; // this API passes back the id of the new item added to the body
 //    String body = response.body;
@@ -101,27 +123,27 @@ class Root_state extends State<Root>{
 //    var data2=jsonDecode(body2) ;
 //    var data3=jsonDecode(body3) ;
     var data4=jsonDecode(response4.body) ;
-    var data5=jsonDecode(response5.body) ;
+  //  var data5=jsonDecode(response5.body) ;
 
-    DiedGoat=data5["data"]["DiedGoat"];
-     MissingGoat=data5["data"]["MissingGoat"];
-     SlaughterGoat=data5["data"]["SlaughterGoat"];
-     TotalGoat=data5["data"]["TotalGoat"];
-
-   DiedCamel=data5["data"]["DiedCamel"];
-    MissingCamel=data5["data"]["MissingCamel"];
-    SlaughterCamel=data5["data"]["SlaughterCamel"];
-    TotalCamel=data5["data"]["TotalCamel"];
-
-     DiedHorse=data5["data"]["DiedHorse"];
-    MissingHorse=data5["data"]["MissingHorse"];
-     SlaughterHorse=data5["data"]["SlaughterHorse"];
-     TotalHorse=data5["data"]["TotalHorse"];
-
-     DiedSheep=data5["data"]["DiedSheep"];
-     MissingSheep=data5["data"]["MissingSheep"];
-     SlaughterSheep=data5["data"]["SlaughterSheep"];
-     TotalSheep=data5["data"]["TotalSheep"];
+//    DiedGoat=data5["data"]["DiedGoat"];
+//     MissingGoat=data5["data"]["MissingGoat"];
+//     SlaughterGoat=data5["data"]["SlaughterGoat"];
+//     TotalGoat=data5["data"]["TotalGoat"];
+//
+//   DiedCamel=data5["data"]["DiedCamel"];
+//    MissingCamel=data5["data"]["MissingCamel"];
+//    SlaughterCamel=data5["data"]["SlaughterCamel"];
+//    TotalCamel=data5["data"]["TotalCamel"];
+//
+//     DiedHorse=data5["data"]["DiedHorse"];
+//    MissingHorse=data5["data"]["MissingHorse"];
+//     SlaughterHorse=data5["data"]["SlaughterHorse"];
+//     TotalHorse=data5["data"]["TotalHorse"];
+//
+//     DiedSheep=data5["data"]["DiedSheep"];
+//     MissingSheep=data5["data"]["MissingSheep"];
+//     SlaughterSheep=data5["data"]["SlaughterSheep"];
+//     TotalSheep=data5["data"]["TotalSheep"];
 
 //     int d=data5["data"]["MissingCamel"];
 //     print("sddddd $data5");
@@ -131,70 +153,369 @@ class Root_state extends State<Root>{
     for(var i in data["data"]){
       animalTag.add(i["AnimalTag"]);
       animalId.add(i["AnimalTag"]);
-      if(i["AnimalSex"]=="Male"){
-        fatherList.add(i["AnimalTag"]);
-      }
-      else{
-        motherList.add(i["AnimalTag"]);
-      }
+
       if(!ownerList.contains(i["AnimalOwner"])){
         ownerList.add(i["AnimalOwner"]);
       }
       if(i["AnimalCategory"]=="GOAT"){
+        TotalGoat++;
+
+        if(i["AnimalStatus"]=="ALIVE"){
+          AliveGoat++;
+             if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+               AliveGoatBabyMale++;
+             }
+             else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+               AliveGoatBabyFemale++;
+             }
+             else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+               AliveGoatAdultMale++;
+             }
+             else{
+               AliveGoatAdultFemale++;
+             }
+        }
+        else if(i["AnimalStatus"]=="SLAUGHTER"){
+          SlaughterGoat++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            SlaughterGoatBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            SlaughterGoatBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            SlaughterGoatAdultMale++;
+          }
+          else{
+            SlaughterGoatAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="MISSING"){
+          MissingGoat++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            MissingGoatBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            MissingGoatBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            MissingGoatAdultMale++;
+          }
+          else{
+            MissingGoatAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="DIED"){
+          DiedGoat++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            DiedGoatBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            DiedGoatBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            DiedGoatAdultMale++;
+          }
+          else{
+            DiedGoatAdultFemale++;
+          }
+
+        }
+
+
+
+
+
         if(i["AnimalBreed"]=="OMANI"){
-        listofGoatsOmani.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofGoatsOmani.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SHAMMAL"){
 
 
-        listofGoatsShammal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofGoatsShammal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
 
       }
       else{
 
-        listofGoatsNgoat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofGoatsNgoat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
+        if(i["AnimalSex"]=="Male"){
+          fatherListGoat.add(i["AnimalTag"]);
+        }
+        else{
+          motherListGoat.add(i["AnimalTag"]);
+        }
       noOfGoats++;
       }
       else if(i["AnimalCategory"]=="HORSE"){
+
+
+        TotalHorse++;
+
+        if(i["AnimalStatus"]=="ALIVE"){
+          AliveHorse++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            AliveHorseBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            AliveHorseBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            AliveHorseAdultMale++;
+          }
+          else{
+            AliveHorseAdultFemale++;
+          }
+        }
+        else if(i["AnimalStatus"]=="SLAUGHTER"){
+          SlaughterHorse++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            SlaughterHorseBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            SlaughterHorseBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            SlaughterHorseAdultMale++;
+          }
+          else{
+            SlaughterHorseAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="MISSING"){
+          MissingHorse++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            MissingHorseBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            MissingHorseBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            MissingHorseAdultMale++;
+          }
+          else{
+            MissingHorseAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="DEAD"){
+          DiedHorse++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            DiedHorseBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            DiedHorseBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            DiedHorseAdultMale++;
+          }
+          else{
+            DiedHorseAdultFemale++;
+          }
+
+        }
+
+
+
+
+
         if(i["AnimalBreed"]=="BEAUTY"){
-        listofHorseBeauty.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofHorseBeauty.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else {
-        listofHorseRacing.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofHorseRacing.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
+        if(i["AnimalSex"]=="Male"){
+          fatherListHorse.add(i["AnimalTag"]);
+        }
+        else{
+          motherListHorse.add(i["AnimalTag"]);
+        }
       noOfHorse++;
 
       }
       else if(i["AnimalCategory"]=="SHEEP"){
+
+
+        TotalSheep++;
+
+        if(i["AnimalStatus"]=="ALIVE"){
+          AliveSheep++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            AliveSheepBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            AliveSheepBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            AliveSheepAdultMale++;
+          }
+          else{
+            AliveSheepAdultFemale++;
+          }
+        }
+        else if(i["AnimalStatus"]=="SLAUGHTER"){
+          SlaughterSheep++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            SlaughterSheepBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            SlaughterSheepBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            SlaughterSheepAdultMale++;
+          }
+          else{
+            SlaughterSheepAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="MISSING"){
+          MissingSheep++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            MissingSheepBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            MissingSheepBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            MissingSheepAdultMale++;
+          }
+          else{
+            MissingSheepAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="DEAD"){
+          DiedSheep++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            DiedSheepBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            DiedSheepBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            DiedSheepAdultMale++;
+          }
+          else{
+            DiedSheepAdultFemale++;
+          }
+
+        }
+
+
+
         if(i["AnimalBreed"]=="TALLAL"){
-        listofSheepTallal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofSheepTallal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SIMON"){
-        listofSheepSimon.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofSheepSimon.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SALEH"){
-        listofSheepSaleh.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofSheepSaleh.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="ROBBY"){
-        listofSheepRobby.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofSheepRobby.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="HARRYAT"){
-        listofSheepHarrayat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofSheepHarrayat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else{
-        listofSheepBarbi.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofSheepBarbi.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
+        if(i["AnimalSex"]=="Male"){
+          fatherListSheep.add(i["AnimalTag"]);
+        }
+        else{
+          motherListSheep.add(i["AnimalTag"]);
+        }
 
       noOfSheeps++;
       }
       else{
+
+        TotalCamel++;
+
+        if(i["AnimalStatus"]=="ALIVE"){
+          AliveCamel++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            AliveCamelBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            AliveCamelBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            AliveCamelAdultMale++;
+          }
+          else{
+            AliveCamelAdultFemale++;
+          }
+        }
+        else if(i["AnimalStatus"]=="SLAUGHTER"){
+          SlaughterCamel++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            SlaughterCamelBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            SlaughterCamelBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            SlaughterCamelAdultMale++;
+          }
+          else{
+            SlaughterCamelAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="MISSING"){
+          MissingCamel++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            MissingCamelBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            MissingCamelBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            MissingCamelAdultMale++;
+          }
+          else{
+            MissingCamelAdultFemale++;
+          }
+
+        }
+        else if(i["AnimalStatus"]=="DEAD"){
+          DiedCamel++;
+          if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
+            DiedCamelBabyMale++;
+          }
+          else if(i["AnimalSex"]=="Female" && i["AnimalAge"]=="Baby"){
+            DiedCamelBabyFemale++;
+          }
+          else if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Adult"){
+            DiedCamelAdultMale++;
+          }
+          else{
+            DiedCamelAdultFemale++;
+          }
+
+        }
+
+
         if(i["AnimalBreed"]=="BIG"){
-        listofCamelBig.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofCamelBig.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else {
-        listofCamelSmall.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalDOB"]),IfNull(i["AnimalFather"]),IfNull(i["AnimalID"]),IfNull(i["AnimalMother"]),IfNull(i["AnimalOwner"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalStatusCause"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        listofCamelSmall.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
+        if(i["AnimalSex"]=="Male"){
+          fatherListCamel.add(i["AnimalTag"]);
+        }
+        else{
+          motherListCamel.add(i["AnimalTag"]);
+        }
       noOfCamel++;
       }
     }
@@ -317,15 +638,11 @@ class Root_state extends State<Root>{
     listOfSheep.add(listofSheepHarrayat);
 
   //  if(ownerList.isEmpty){
-      ownerList.add("None");
+
      // ownerList.add("empty2");
   //  }
    // if(fatherList.isEmpty){
-      fatherList.add("None");
-     // fatherList.add("empty2");
-  //  }
-   // if(motherList.isEmpty){
-      motherList.add("None");
+
     //  motherList.add("empty2");
    // }
   //  if(animalTag.isEmpty){
@@ -339,13 +656,13 @@ class Root_state extends State<Root>{
 
     chooseOwner=ownerList[0];
     chooseOwnerForMultiAdd=ownerList[0];
-    chooseFather=fatherList[0];
-    chooseMother=motherList[0];
+    chooseFather=fatherListGoat[0];
+    chooseMother=motherListGoat[0];
     chooseAnimalId=animalId[0];
 
     chooseOwnerForUpdate=ownerList[0];
-    chooseFatherForUpdate=fatherList[0];
-    chooseMotherForUpdate=motherList[0];
+    chooseFatherForUpdate=fatherListGoat[0];
+    chooseMotherForUpdate=motherListGoat[0];
 
     tagChooseForVcc=animalTag[0];
     tagChooseForDied=animalTag[0];

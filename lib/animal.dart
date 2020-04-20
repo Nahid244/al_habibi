@@ -94,266 +94,351 @@ class Animal extends StatelessWidget{
                               return Card(
                               child: Column(
                               children: <Widget>[
-              ListTile(
-              // leading: Icon(Icons.album),
-              title: Text(subCatList[idx][index].AnimalTag),
-              subtitle: Text(subCatList[idx][index].AnimalBreed),
-              ),
+//              ListTile(
+//              // leading: Icon(Icons.album),
+//              title: Text(),
+//              subtitle: Text(subCatList[idx][index].AnimalBreed),
+//              ),
 
               ExpansionTile(
-              title:  Text("Details", style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+              title:  Text(subCatList[idx][index].AnimalTag, style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
               children: <Widget>[
               Image.network(
               'https://alhabibifarm.secretdevbd.com/static/UPLOADS/'+subCatList[idx][index].AnimalPictureName,
               height: MediaQuery.of(context).size.height/4,width:  MediaQuery.of(context).size.width,fit: BoxFit.fill,
               ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
+              Row(
+                children: <Widget>[
+                  Center(
 
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
+                    child: Column(
+
+                      children: <Widget>[
+                        Text("Added Date",textAlign: TextAlign.left,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("Animal Breed",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("Animal Category",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+
+                        Text("Animal Age",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("Animal Sex",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("Animal Status",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+
+                        Text("Animal StatusDate",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("Updated Date",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+
+                      ],
+                    )
                   ),
-                  onPressed: () {
+                  Center(
+                    child: Column(
+                      children: <Widget>[
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text(" : ",textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
 
-                  },
-                  child: Text("Added Date: "+subCatList[idx][index].AddedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
 
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
+                      ],
+                    )
                   ),
-                  onPressed: () {
+                  Center(
+                      child: Column(
+                        children: <Widget>[
+                          Text(subCatList[idx][index].AddedDate,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].AnimalBreed,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].AnimalCategory,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].age,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                         // Text(subCatList[idx][index].AnimalFather,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          //Text(subCatList[idx][index].AnimalMother,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                         // Text(subCatList[idx][index].AnimalID,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          //Text(subCatList[idx][index].AnimalOwner,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].AnimalSex,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].AnimalStatus,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                       //   Text(subCatList[idx][index].AnimalStatusCause,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].AnimalStatusDate,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                          Text(subCatList[idx][index].UpdatedDate,textAlign: TextAlign.start,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
 
-                  },
-                  child: Text("Animal Breed: "+subCatList[idx][index].AnimalBreed,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
+                        ],
+                      )
                   ),
-                  onPressed: () {
 
-                  },
-                  child: Text("Animal Category: "+subCatList[idx][index].AnimalCategory,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
+                ],
+              ),
+              Text("Vaccine Details:",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+              Column(
+                children: List.generate(vccDet.length,(index){
+                  return  Align(
+                    alignment: Alignment.bottomLeft,
+
+                    child: Text("Date :"+vccDet[index].VDate+",details :"+vccDet[index].VDetails,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+
+                  );
+                },
               )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
+//              Row(
+//                children: <Widget>[
+//                  Text("Added Date",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                  Text(": "+subCatList[idx][index].AddedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ],
+//              )
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child:Row(
+//                  children: <Widget>[
+//                    Text("Added Date",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                    Text(":",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                    Text(subCatList[idx][index].AddedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                  ],
+//                )
+//
+////                FlatButton(
+////
+////                  color: Colors.green,
+////                  textColor: Colors.black,
+////                  padding: EdgeInsets.all(8.0),
+////                  splashColor: Colors.blueAccent,
+////                  shape: RoundedRectangleBorder(
+////                      borderRadius: new BorderRadius.circular(50.0),
+////                      side: BorderSide(color: Colors.black)
+////                  ),
+////                  onPressed: () {
+////
+////                  },
+////                  child: Text("Added Date: "+subCatList[idx][index].AddedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+////                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("Animal Breed: "+subCatList[idx][index].AnimalBreed,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("Animal Category: "+subCatList[idx][index].AnimalCategory,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalDOB: "+subCatList[idx][index].AnimalDOB,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalFather: "+subCatList[idx][index].AnimalFather,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child:  Text("AnimalID: "+subCatList[idx][index].AnimalID,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalMother: "+subCatList[idx][index].AnimalMother,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child:  Text("AnimalOwner: "+subCatList[idx][index].AnimalOwner,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalSex: "+subCatList[idx][index].AnimalSex,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalStatus: "+subCatList[idx][index].AnimalStatus,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalStatusCause: "+subCatList[idx][index].AnimalStatusCause,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("AnimalStatusDate: "+subCatList[idx][index].AnimalStatusDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
+//              ,
+//              Align(
+//                alignment: Alignment.bottomLeft,
+//                child: FlatButton(
+//
+//                  color: Colors.green,
+//                  textColor: Colors.black,
+//                  padding: EdgeInsets.all(8.0),
+//                  splashColor: Colors.blueAccent,
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(50.0),
+//                      side: BorderSide(color: Colors.black)
+//                  ),
+//                  onPressed: () {
+//
+//                  },
+//                  child: Text("UpdatedDate: "+subCatList[idx][index].UpdatedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                ),
+//              )
 
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalDOB: "+subCatList[idx][index].AnimalDOB,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalFather: "+subCatList[idx][index].AnimalFather,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child:  Text("AnimalID: "+subCatList[idx][index].AnimalID,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalMother: "+subCatList[idx][index].AnimalMother,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child:  Text("AnimalOwner: "+subCatList[idx][index].AnimalOwner,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalSex: "+subCatList[idx][index].AnimalSex,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalStatus: "+subCatList[idx][index].AnimalStatus,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalStatusCause: "+subCatList[idx][index].AnimalStatusCause,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("AnimalStatusDate: "+subCatList[idx][index].AnimalStatusDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FlatButton(
-
-                  color: Colors.green,
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.black)
-                  ),
-                  onPressed: () {
-
-                  },
-                  child: Text("UpdatedDate: "+subCatList[idx][index].UpdatedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                ),
-              )
-              ,
 
 
             //  Text("Added Date: "+subCatList[idx][index].AddedDate,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
@@ -373,34 +458,22 @@ class Animal extends StatelessWidget{
 
 
 
-
+              )
               ],
 
               ),
 
-                                ExpansionTile(
-                                  title:  Text("Vaccine Details", style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                                  children: List.generate(vccDet.length,(index){
-                                    return  Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: FlatButton(
-
-                                        color: Colors.green,
-                                        textColor: Colors.black,
-                                        padding: EdgeInsets.all(8.0),
-                                        splashColor: Colors.blueAccent,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: new BorderRadius.circular(50.0),
-                                            side: BorderSide(color: Colors.black)
-                                        ),
-                                        onPressed: () {
-
-                                        },
-                                        child: Text("Date :"+vccDet[index].VDate+",details :"+vccDet[index].VDetails,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                                      ),
-                                    );
-                               }
-                                ))
+//                                ExpansionTile(
+//                                  title:  Text("Vaccine Details", style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//                                  children: List.generate(vccDet.length,(index){
+//                                    return  Align(
+//                                      alignment: Alignment.bottomLeft,
+//
+//                                        child: Text("Date :"+vccDet[index].VDate+",details :"+vccDet[index].VDetails,style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+//
+//                                    );
+//                               }
+//                                ))
               ],
                               ),
                               );

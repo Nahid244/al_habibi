@@ -16,7 +16,27 @@ class Home extends StatefulWidget{
 }
 class Home_State extends State<Home>{
 
-  void _showDialog(String title,int a,int b,int c,int d) {
+  void _showDialog(String title,int DiedSheep,
+  int DiedSheepBabyMale,
+  int DiedSheepAdultMale,
+  int DiedSheepBabyFemale,
+  int DiedSheepAdultFemale,
+  int MissingSheep,
+  int MissingSheepBabyMale,
+  int MissingSheepAdultMale,
+  int MissingSheepBabyFemale,
+  int MissingSheepAdultFemale,
+  int SlaughterSheep,
+  int SlaughterSheepBabyMale,
+  int SlaughterSheepAdultMale,
+  int SlaughterSheepBabyFemale,
+  int SlaughterSheepAdultFemale,
+  int AliveSheep,
+  int AliveSheepBabyMale,
+  int AliveSheepAdultMale,
+  int AliveSheepBabyFemale,
+  int AliveSheepAdultFemale,
+      int Total) {
     // flutter defined function
     showDialog(
       context: context,
@@ -24,87 +44,91 @@ class Home_State extends State<Home>{
         // return object of type Dialog
         return AlertDialog(
           title: new Text(title),
+          contentPadding: EdgeInsets.all(0),
+          content:Table(
+//          defaultColumnWidth:
+//              FixedColumnWidth(MediaQuery.of(context).size.width / 3),
+            border: TableBorder.all(
+                color: Colors.black26, width: 1, style: BorderStyle.solid),
+            children: [
+              TableRow(children: [
+                TableCell(child: Center(child: Text(title,style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text('Male',style:TextStyle(fontSize: 11))),
+                ),
+                TableCell(child: Center(child: Text('Male',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Female',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Female',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text(''))),
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text(""))),
+                TableCell(
+                  child: Center(child: Text('Adult',style:TextStyle(fontSize: 11))),
+                ),
+                TableCell(child: Center(child: Text('Baby',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Adult',style:TextStyle(fontSize:11)))),
+                TableCell(child: Center(child: Text('Baby',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Total',style:TextStyle(fontSize: 11)))),
 
-          content:Container(
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Alive",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(AliveSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(AliveSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(AliveSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(AliveSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(AliveSheep.toString()))),
 
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: FlatButton(
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Slaugtered",style:TextStyle(fontSize: 8)))),
+                TableCell(
+                  child: Center(child: Text(SlaughterSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(SlaughterSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(SlaughterSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(SlaughterSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(SlaughterSheep.toString()))),
 
-                      color: Colors.green,
-                      textColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0),
-                          side: BorderSide(color: Colors.black)
-                      ),
-                      onPressed: () {
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Died",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(DiedSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(DiedSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(DiedSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(DiedSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(DiedSheep.toString()))),
 
-                      },
-                      child: Text("Died: "+a.toString(),style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: FlatButton(
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Missing",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(MissingSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(MissingSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(MissingSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(MissingSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(MissingSheep.toString()))),
 
-                      color: Colors.green,
-                      textColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0),
-                          side: BorderSide(color: Colors.black)
-                      ),
-                      onPressed: () {
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Total",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text((AliveSheepAdultMale+SlaughterSheepAdultMale+DiedSheepAdultMale+MissingSheepAdultMale).toString())),
+                ),
+                TableCell(child: Center(child: Text((AliveSheepBabyMale+SlaughterSheepBabyMale+DiedSheepBabyMale+MissingSheepBabyMale).toString()))),
+                TableCell(child: Center(child: Text((AliveSheepAdultFemale+SlaughterSheepAdultFemale+DiedSheepAdultFemale+MissingSheepAdultFemale).toString()))),
+                TableCell(child: Center(child: Text((AliveSheepBabyFemale+SlaughterSheepBabyFemale+DiedSheepBabyFemale+MissingSheepBabyFemale).toString()))),
+                TableCell(child: Center(child: Text(Total.toString()))),
 
-                      },
-                      child: Text("Missing: "+b.toString(),style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: FlatButton(
+              ]),
 
-                      color: Colors.green,
-                      textColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0),
-                          side: BorderSide(color: Colors.black)
-                      ),
-                      onPressed: () {
-
-                      },
-                      child: Text("Slaughtered: "+c.toString(),style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: FlatButton(
-
-                      color: Colors.green,
-                      textColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0),
-                          side: BorderSide(color: Colors.black)
-                      ),
-                      onPressed: () {
-
-                      },
-                      child: Text("Alive: "+d.toString(),style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
-                    ),
-                  )
-                ],
-              ),
-            )
+            ],
           )
 
           ,
@@ -296,7 +320,7 @@ class Home_State extends State<Home>{
               )
               ,
                 Flexible(
-                  flex: 1,
+                  flex: 3,
                     child: Container(
                       decoration:  BoxDecoration(
 
@@ -310,7 +334,7 @@ class Home_State extends State<Home>{
                 ,
 
                 Flexible(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: <Widget>[
                       Flexible(
@@ -340,7 +364,27 @@ class Home_State extends State<Home>{
                                           side: BorderSide(color: Colors.black)
                                       ),
                                       onPressed: () {
-                                        _showDialog("Goat",DiedGoat,MissingGoat,SlaughterGoat,TotalGoat);
+                                        _showDialog("Goat", DiedGoat,
+                                             DiedGoatBabyMale,
+                                            DiedGoatAdultMale,
+                                             DiedGoatBabyFemale,
+                                             DiedGoatAdultFemale,
+                                             MissingGoat,
+                                             MissingGoatBabyMale,
+                                             MissingGoatAdultMale,
+                                             MissingGoatBabyFemale,
+                                             MissingGoatAdultFemale,
+                                             SlaughterGoat,
+                                            SlaughterGoatBabyMale,
+                                             SlaughterGoatAdultMale,
+                                             SlaughterGoatBabyFemale,
+                                             SlaughterGoatAdultFemale,
+                                             AliveGoat,
+                                             AliveGoatBabyMale,
+                                             AliveGoatAdultMale,
+                                             AliveGoatBabyFemale,
+                                             AliveGoatAdultFemale,
+                                        TotalGoat);
                                       },
                                       child: Text("Goat: "+noOfGoats.toString(),style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
                                     ),
@@ -374,7 +418,27 @@ class Home_State extends State<Home>{
                                         side: BorderSide(color: Colors.black)
                                     ),
                                     onPressed: () {
-                                      _showDialog("Horse",DiedHorse,MissingHorse,SlaughterHorse,TotalHorse);
+                                      _showDialog("Horse",DiedHorse,
+                                          DiedHorseBabyMale,
+                                          DiedHorseAdultMale,
+                                          DiedHorseBabyFemale,
+                                          DiedHorseAdultFemale,
+                                          MissingHorse,
+                                          MissingHorseBabyMale,
+                                          MissingHorseAdultMale,
+                                          MissingHorseBabyFemale,
+                                          MissingHorseAdultFemale,
+                                          SlaughterHorse,
+                                          SlaughterHorseBabyMale,
+                                          SlaughterHorseAdultMale,
+                                          SlaughterHorseBabyFemale,
+                                          SlaughterHorseAdultFemale,
+                                          AliveHorse,
+                                          AliveHorseBabyMale,
+                                          AliveHorseAdultMale,
+                                          AliveHorseBabyFemale,
+                                          AliveHorseAdultFemale,
+                                          TotalHorse);
                                     },
                                     child: Text("Horse: "+noOfHorse.toString(),style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
                                   ),
@@ -387,6 +451,54 @@ class Home_State extends State<Home>{
                 ),
                 Flexible(
                   flex: 1,
+                    child:  Align(
+                      alignment: Alignment.bottomCenter,
+                      child: FlatButton(
+                        color: Colors.white,
+                        textColor: Colors.black,
+
+                        // disabledColor: Colors.grey,
+                        // disabledTextColor: Colors.black,
+                        padding: EdgeInsets.all(8.0),
+                        splashColor: Colors.blueAccent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(50.0),
+                            side: BorderSide(color: Colors.black)
+                        ),
+                        onPressed: () {
+                          _showDialog("", DiedGoat+DiedSheep+DiedCamel+DiedHorse,
+                              DiedGoatBabyMale+DiedSheepBabyMale+DiedCamelBabyMale+DiedHorseBabyMale,
+                              DiedGoatAdultMale+ DiedSheepAdultMale+ DiedCamelAdultMale+ DiedHorseAdultMale,
+                              DiedGoatBabyFemale+DiedSheepBabyFemale+DiedCamelBabyFemale+DiedHorseBabyFemale,
+                              DiedGoatAdultFemale+DiedSheepAdultFemale+DiedCamelAdultFemale+DiedHorseAdultFemale,
+
+                              MissingGoat+MissingSheep+MissingCamel+MissingHorse,
+                              MissingGoatBabyMale+MissingSheepBabyMale+MissingCamelBabyMale+MissingHorseBabyMale,
+                              MissingGoatAdultMale+MissingSheepAdultMale+MissingCamelAdultMale+MissingHorseAdultMale,
+                              MissingGoatBabyFemale+MissingSheepBabyFemale+MissingCamelBabyFemale+MissingHorseBabyFemale,
+                              MissingGoatAdultFemale+MissingSheepAdultFemale+MissingCamelAdultFemale+MissingHorseAdultFemale,
+
+                              SlaughterGoat+SlaughterSheep+SlaughterCamel+SlaughterHorse,
+                              SlaughterGoatBabyMale+SlaughterSheepBabyMale+SlaughterCamelBabyMale+SlaughterHorseBabyMale,
+                              SlaughterGoatAdultMale+SlaughterSheepAdultMale+SlaughterCamelAdultMale+SlaughterHorseAdultMale,
+                              SlaughterGoatBabyFemale+SlaughterSheepBabyFemale+SlaughterCamelBabyFemale+SlaughterHorseBabyFemale,
+                              SlaughterGoatAdultFemale+SlaughterSheepAdultFemale+SlaughterCamelAdultFemale+SlaughterHorseAdultFemale,
+
+                              AliveGoat+AliveSheep+AliveCamel+AliveHorse,
+                              AliveGoatBabyMale+AliveSheepBabyMale+AliveCamelBabyMale+AliveHorseBabyMale,
+                              AliveGoatAdultMale+AliveSheepAdultMale+AliveCamelAdultMale+AliveHorseAdultMale,
+                              AliveGoatBabyFemale+AliveSheepBabyFemale+AliveCamelBabyFemale+AliveHorseBabyFemale,
+                              AliveGoatAdultFemale+AliveSheepAdultFemale+AliveCamelAdultFemale+AliveHorseAdultFemale,
+
+                              TotalGoat+TotalSheep+TotalCamel+TotalHorse);
+                        },
+                        child: Text("Total: "+(noOfGoats+noOfCamel+noOfSheeps+noOfHorse).toString(),style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+                      ),
+                    )
+                )
+                ,
+                Flexible(
+                  flex: 3,
                   child: Row(
                     children: <Widget>[
                       Flexible(
@@ -415,7 +527,27 @@ class Home_State extends State<Home>{
                                           side: BorderSide(color: Colors.black)
                                       ),
                                       onPressed: () {
-                                        _showDialog("Sheep",DiedSheep,MissingSheep,SlaughterSheep,TotalSheep);
+                                        _showDialog("Sheep",DiedSheep,
+                                            DiedSheepBabyMale,
+                                            DiedSheepAdultMale,
+                                            DiedSheepBabyFemale,
+                                            DiedSheepAdultFemale,
+                                            MissingSheep,
+                                            MissingSheepBabyMale,
+                                            MissingSheepAdultMale,
+                                            MissingSheepBabyFemale,
+                                            MissingSheepAdultFemale,
+                                            SlaughterSheep,
+                                            SlaughterSheepBabyMale,
+                                            SlaughterSheepAdultMale,
+                                            SlaughterSheepBabyFemale,
+                                            SlaughterSheepAdultFemale,
+                                            AliveSheep,
+                                            AliveSheepBabyMale,
+                                            AliveSheepAdultMale,
+                                            AliveSheepBabyFemale,
+                                            AliveSheepAdultFemale,
+                                            TotalSheep);
                                       },
                                       child: Text("Sheep: "+noOfSheeps.toString(),style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
                                     ),
@@ -449,7 +581,27 @@ class Home_State extends State<Home>{
                                           side: BorderSide(color: Colors.black)
                                       ),
                                       onPressed: () {
-                                        _showDialog("Camel",DiedCamel,MissingCamel,SlaughterCamel,TotalCamel);
+                                        _showDialog("Camel",DiedCamel,
+                                            DiedCamelBabyMale,
+                                            DiedCamelAdultMale,
+                                            DiedCamelBabyFemale,
+                                            DiedCamelAdultFemale,
+                                            MissingCamel,
+                                            MissingCamelBabyMale,
+                                            MissingCamelAdultMale,
+                                            MissingCamelBabyFemale,
+                                            MissingCamelAdultFemale,
+                                            SlaughterCamel,
+                                            SlaughterCamelBabyMale,
+                                            SlaughterCamelAdultMale,
+                                            SlaughterCamelBabyFemale,
+                                            SlaughterCamelAdultFemale,
+                                            AliveCamel,
+                                            AliveCamelBabyMale,
+                                            AliveCamelAdultMale,
+                                            AliveCamelBabyFemale,
+                                            AliveCamelAdultFemale,
+                                            TotalCamel);
                                       },
                                       child: Text("Camel: "+noOfCamel.toString(),style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
                                     ),
@@ -461,7 +613,7 @@ class Home_State extends State<Home>{
                   ),
                 ),
                 Flexible(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: <Widget>[
                       Flexible(

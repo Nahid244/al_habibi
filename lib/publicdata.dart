@@ -45,9 +45,9 @@ List<VccDetails> vccDetails=[];
 
 
 ///more
-List<String> moreOptionAdmin=["Add animal","Add multiple animal","Add Owner","Add emplyee","Search","Update","Missing","Slaugtered","Died","Vaccine"];
-List<String> moreOptionEmp=["Add animal","Add multiple animal","Search","Update","Missing","Slaugtered","Died","Vaccine"];
-List<String> moreOption=["Add animal","Add multiple animal","Add Owner","Add emplyee","Search","Update","Missing","Slaugtered","Died","Vaccine"];
+List<String> moreOptionAdmin=["Add Animal","Add Multiple Animal","Add Owner","Add Emplyee","Search","Update Animal","Update Status"];
+List<String> moreOptionEmp=["Add Animal","Add Multiple Animal","Search","Update Animal","Update Status"];
+List<String> moreOption=["Add Animal","Add Multiple Animal","Add Owner","Add Emplyee","Search","Update Animal","Update Status"];
 String chooseMoreOption=moreOption[0];
 
 List<String> subAnimal=goatAnimal;
@@ -69,7 +69,8 @@ String chooseOwnerForMultiAdd;
 
 String numberOfMaleForMultiAdd="0";
 String numberOfFemaleForMultiAdd="0";
-String numberOfBabyForMultiAdd="0";
+String numberOfBabyMaleForMultiAdd="0";
+String numberOfBabyFemaleForMultiAdd="0";
 
 List<Anim> srchData=[];
 
@@ -101,10 +102,27 @@ String monthChooseforVcc=monthList[0];
 String dayChooseforVcc=dayList[0];
 String yearChooseforVcc=yearList[0];
 
-List<String> fatherList=[];
+List<String> fatherListGoat=[];
+List<String> fatherListSheep=[];
+List<String> fatherListHorse=[];
+List<String> fatherListCamel=[];
 String chooseFather;
 String chooseFatherForUpdate;
-List<String> motherList=[];
+
+List<String> animal_Status=["Missing","DIED","SLAUGHTER","Alive"];
+String chooseAnimalStatus=animal_Status[0];
+
+List<String> ageListForAdd=["Adult","Baby"];
+String chooseAgeForAdd=ageListForAdd[0];
+
+List<String> ageListForUpdate=["Adult","Baby"];
+String chooseAgeForUpdate=ageListForAdd[0];
+
+List<String> motherListGoat=[];
+List<String> motherListSheep=[];
+List<String> motherListHorse=[];
+List<String> motherListCamel=[];
+
 String chooseMother;
 String chooseMotherForUpdate;
 
@@ -123,7 +141,7 @@ bool slaughteredVisibility=false;
 bool vaccineVisibility=false;
 bool diedVisibility=false;
 bool srchResultVisibility=false;
-
+bool updateStatusVisibility=false;
 bool alertVisibility=false;
 
 String searchTxt;
@@ -158,23 +176,91 @@ Widget but_txt7=Text("update");
 
 
 int DiedGoat=0;
+int DiedGoatBabyMale=0;
+int DiedGoatAdultMale=0;
+int DiedGoatBabyFemale=0;
+int DiedGoatAdultFemale=0;
 int MissingGoat=0;
+int MissingGoatBabyMale=0;
+int MissingGoatAdultMale=0;
+int MissingGoatBabyFemale=0;
+int MissingGoatAdultFemale=0;
 int SlaughterGoat=0;
+int SlaughterGoatBabyMale=0;
+int SlaughterGoatAdultMale=0;
+int SlaughterGoatBabyFemale=0;
+int SlaughterGoatAdultFemale=0;
+int AliveGoat=0;
+int AliveGoatBabyMale=0;
+int AliveGoatAdultMale=0;
+int AliveGoatBabyFemale=0;
+int AliveGoatAdultFemale=0;
 int TotalGoat=0;
 
 int DiedCamel=0;
+int DiedCamelBabyMale=0;
+int DiedCamelAdultMale=0;
+int DiedCamelBabyFemale=0;
+int DiedCamelAdultFemale=0;
 int MissingCamel=0;
+int MissingCamelBabyMale=0;
+int MissingCamelAdultMale=0;
+int MissingCamelBabyFemale=0;
+int MissingCamelAdultFemale=0;
 int SlaughterCamel=0;
+int SlaughterCamelBabyMale=0;
+int SlaughterCamelAdultMale=0;
+int SlaughterCamelBabyFemale=0;
+int SlaughterCamelAdultFemale=0;
+int AliveCamel=0;
+int AliveCamelBabyMale=0;
+int AliveCamelAdultMale=0;
+int AliveCamelBabyFemale=0;
+int AliveCamelAdultFemale=0;
 int TotalCamel=0;
 
 int DiedHorse=0;
+int DiedHorseBabyMale=0;
+int DiedHorseAdultMale=0;
+int DiedHorseBabyFemale=0;
+int DiedHorseAdultFemale=0;
 int MissingHorse=0;
+int MissingHorseBabyMale=0;
+int MissingHorseAdultMale=0;
+int MissingHorseBabyFemale=0;
+int MissingHorseAdultFemale=0;
 int SlaughterHorse=0;
+int SlaughterHorseBabyMale=0;
+int SlaughterHorseAdultMale=0;
+int SlaughterHorseBabyFemale=0;
+int SlaughterHorseAdultFemale=0;
+int AliveHorse=0;
+int AliveHorseBabyMale=0;
+int AliveHorseAdultMale=0;
+int AliveHorseBabyFemale=0;
+int AliveHorseAdultFemale=0;
 int TotalHorse=0;
 
 int DiedSheep=0;
+int DiedSheepBabyMale=0;
+int DiedSheepAdultMale=0;
+int DiedSheepBabyFemale=0;
+int DiedSheepAdultFemale=0;
 int MissingSheep=0;
+int MissingSheepBabyMale=0;
+int MissingSheepAdultMale=0;
+int MissingSheepBabyFemale=0;
+int MissingSheepAdultFemale=0;
 int SlaughterSheep=0;
+int SlaughterSheepBabyMale=0;
+int SlaughterSheepAdultMale=0;
+int SlaughterSheepBabyFemale=0;
+int SlaughterSheepAdultFemale=0;
+int AliveSheep=0;
+int AliveSheepBabyMale=0;
+int AliveSheepAdultMale=0;
+int AliveSheepBabyFemale=0;
+int AliveSheepAdultFemale=0;
 int TotalSheep=0;
 
 class Anim{
@@ -194,12 +280,13 @@ class Anim{
  String AnimalTag;
 // String AnimalWeight;
  String UpdatedDate;
+ String age;
 
 
 
- Anim(this.AddedDate, this.AnimalBreed, this.AnimalCategory, this.AnimalDOB,
-     this.AnimalFather, this.AnimalID, this.AnimalMother, this.AnimalOwner,this.AnimalPictureName,
-     this.AnimalSex, this.AnimalStatus, this.AnimalStatusCause,
+ Anim(this.AddedDate, this.AnimalBreed, this.AnimalCategory,
+      this.AnimalID,  this.AnimalPictureName,
+     this.AnimalSex, this.AnimalStatus,this.age,
      this.AnimalStatusDate, this.AnimalTag,
      this.UpdatedDate);
 
