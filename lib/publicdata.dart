@@ -109,7 +109,7 @@ List<String> fatherListCamel=[];
 String chooseFather;
 String chooseFatherForUpdate;
 
-List<String> animal_Status=["Missing","DIED","SLAUGHTER","Alive"];
+List<String> animal_Status=["MISSING","DIED","SLAUGHTER","ALIVE"];
 String chooseAnimalStatus=animal_Status[0];
 
 List<String> ageListForAdd=["Adult","Baby"];

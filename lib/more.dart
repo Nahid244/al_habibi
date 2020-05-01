@@ -2792,7 +2792,7 @@ class AddAnimalMulti_State extends State<AddAnimalMulti>{
 
     String url = 'https://alhabibifarm.secretdevbd.com/API/AddMultipleAnimal';
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"male_baby": '+numberOfBabyMaleForMultiAdd +',"male_adult": '+numberOfMaleForMultiAdd+',"female_baby": '+numberOfBabyFemaleForMultiAdd+',"female_adult": '+numberOfFemaleForMultiAdd+',"cat": "'+chooseAnimalForMultiAdd+'","sub_cat": "'+chooseSubAnimalForMultiAdd+'","owner": "'+chooseOwnerForMultiAdd+'"}'; // make POST request
+    String json = '{"male_baby": '+numberOfBabyMaleForMultiAdd +',"male_adult": '+numberOfMaleForMultiAdd+',"female_baby": '+numberOfBabyFemaleForMultiAdd+',"female_adult": '+numberOfFemaleForMultiAdd+',"cat": "'+chooseAnimalForMultiAdd+'","sub_cat": "'+chooseSubAnimalForMultiAdd+'"}'; // make POST request
     print(json);
     var response = await http.post(url, headers: headers,
         body: json); // check the status code for the result
@@ -2935,54 +2935,7 @@ class AddAnimalMulti_State extends State<AddAnimalMulti>{
              )
            ],
          ),
-         Container(
-           padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
 
-         ),
-         Row(
-           children: <Widget>[
-             Flexible(
-                 flex: 1,
-                 child: Center(
-                   child: Text("Owner: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
-                 )
-             ),
-             Flexible(
-                 flex: 1,
-                 child:   Center(
-                     child:DropdownButton<String>(
-                       value:chooseOwnerForMultiAdd ,
-                       icon: Icon(Icons.arrow_downward),
-                       iconSize: 24,
-                       elevation: 16,
-                       style: TextStyle(
-                           color: Colors.deepPurple
-                       ),
-                       underline: Container(
-                         height: 2,
-                         color: Colors.deepPurpleAccent,
-                       ),
-                       onChanged: (String newValue) {
-                         // print(newValue);
-                         setState(() {
-                           chooseOwnerForMultiAdd = newValue;
-
-
-                         });
-                       },
-                       items: ownerList
-                           .map<DropdownMenuItem<String>>((String value) {
-                         return DropdownMenuItem<String>(
-                           value: value,
-                           child: Text(value),
-                         );
-                       })
-                           .toList(),
-                     )
-                 )
-             )
-           ],
-         ),
          Container(
              padding: EdgeInsets.only(left: 20,top: 20, right: 20),
 
@@ -3130,7 +3083,7 @@ class Update_Status_State extends State<Update_Status>{
     setState(() {
       if(data["status"]==1){
         but_txt=but_txt4;
-        _showDialog(context,"successfully added");
+        _showDialog(context,"Updated Sucessfully");
       }
       else{
         but_txt=but_txt3;

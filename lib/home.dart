@@ -157,6 +157,148 @@ class Home_State extends State<Home>{
     );
   }
 
+
+  void _showDialog1(String title,int DiedSheep,
+      int DiedSheepBabyMale,
+      int DiedSheepAdultMale,
+      int DiedSheepBabyFemale,
+      int DiedSheepAdultFemale,
+      int MissingSheep,
+      int MissingSheepBabyMale,
+      int MissingSheepAdultMale,
+      int MissingSheepBabyFemale,
+      int MissingSheepAdultFemale,
+      int SlaughterSheep,
+      int SlaughterSheepBabyMale,
+      int SlaughterSheepAdultMale,
+      int SlaughterSheepBabyFemale,
+      int SlaughterSheepAdultFemale,
+      int AliveSheep,
+      int AliveSheepBabyMale,
+      int AliveSheepAdultMale,
+      int AliveSheepBabyFemale,
+      int AliveSheepAdultFemale,
+      int Total) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Animals"),
+          contentPadding: EdgeInsets.all(0),
+          content:Table(
+//          defaultColumnWidth:
+//              FixedColumnWidth(MediaQuery.of(context).size.width / 3),
+            border: TableBorder.all(
+                color: Colors.black26, width: 1, style: BorderStyle.solid),
+            children: [
+              TableRow(children: [
+                TableCell(child: Center(child: Text(title,style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text('Male',style:TextStyle(fontSize: 11))),
+                ),
+                TableCell(child: Center(child: Text('Male',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Female',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Female',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text(''))),
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text(""))),
+                TableCell(
+                  child: Center(child: Text('Adult',style:TextStyle(fontSize: 11))),
+                ),
+                TableCell(child: Center(child: Text('Baby',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Adult',style:TextStyle(fontSize:11)))),
+                TableCell(child: Center(child: Text('Baby',style:TextStyle(fontSize: 11)))),
+                TableCell(child: Center(child: Text('Total',style:TextStyle(fontSize: 11)))),
+
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Sheep",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(AliveSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(AliveSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(AliveSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(AliveSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(AliveSheep.toString()))),
+
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Camel",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(SlaughterSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(SlaughterSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(SlaughterSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(SlaughterSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(SlaughterSheep.toString()))),
+
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Horse",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(DiedSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(DiedSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(DiedSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(DiedSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(DiedSheep.toString()))),
+
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Goat",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text(MissingSheepAdultMale.toString())),
+                ),
+                TableCell(child: Center(child: Text(MissingSheepBabyMale.toString()))),
+                TableCell(child: Center(child: Text(MissingSheepAdultFemale.toString()))),
+                TableCell(child: Center(child: Text(MissingSheepBabyFemale.toString()))),
+                TableCell(child: Center(child: Text(MissingSheep.toString()))),
+
+              ]),
+              TableRow(children: [
+                TableCell(child: Center(child: Text("Total",style:TextStyle(fontSize: 11)))),
+                TableCell(
+                  child: Center(child: Text((AliveSheepAdultMale+SlaughterSheepAdultMale+DiedSheepAdultMale+MissingSheepAdultMale).toString())),
+                ),
+                TableCell(child: Center(child: Text((AliveSheepBabyMale+SlaughterSheepBabyMale+DiedSheepBabyMale+MissingSheepBabyMale).toString()))),
+                TableCell(child: Center(child: Text((AliveSheepAdultFemale+SlaughterSheepAdultFemale+DiedSheepAdultFemale+MissingSheepAdultFemale).toString()))),
+                TableCell(child: Center(child: Text((AliveSheepBabyFemale+SlaughterSheepBabyFemale+DiedSheepBabyFemale+MissingSheepBabyFemale).toString()))),
+                TableCell(child: Center(child: Text(Total.toString()))),
+
+              ]),
+
+            ],
+          )
+
+          ,
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              color: Colors.green,
+              textColor: Colors.black,
+
+              // disabledColor: Colors.grey,
+              // disabledTextColor: Colors.black,
+              padding: EdgeInsets.all(8.0),
+              splashColor: Colors.blueAccent,
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(50.0),
+                  side: BorderSide(color: Colors.black)
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Close"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   removeValues() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -466,31 +608,31 @@ class Home_State extends State<Home>{
                             side: BorderSide(color: Colors.black)
                         ),
                         onPressed: () {
-                          _showDialog("", DiedGoat+DiedSheep+DiedCamel+DiedHorse,
-                              DiedGoatBabyMale+DiedSheepBabyMale+DiedCamelBabyMale+DiedHorseBabyMale,
-                              DiedGoatAdultMale+ DiedSheepAdultMale+ DiedCamelAdultMale+ DiedHorseAdultMale,
-                              DiedGoatBabyFemale+DiedSheepBabyFemale+DiedCamelBabyFemale+DiedHorseBabyFemale,
-                              DiedGoatAdultFemale+DiedSheepAdultFemale+DiedCamelAdultFemale+DiedHorseAdultFemale,
+                          _showDialog1("",AliveSheep,
+                              AliveSheepBabyMale,
+                              AliveSheepAdultMale,
+                              AliveSheepBabyFemale,
+                              AliveSheepAdultFemale,
 
-                              MissingGoat+MissingSheep+MissingCamel+MissingHorse,
-                              MissingGoatBabyMale+MissingSheepBabyMale+MissingCamelBabyMale+MissingHorseBabyMale,
-                              MissingGoatAdultMale+MissingSheepAdultMale+MissingCamelAdultMale+MissingHorseAdultMale,
-                              MissingGoatBabyFemale+MissingSheepBabyFemale+MissingCamelBabyFemale+MissingHorseBabyFemale,
-                              MissingGoatAdultFemale+MissingSheepAdultFemale+MissingCamelAdultFemale+MissingHorseAdultFemale,
+                              AliveCamel,
+                              AliveCamelBabyMale,
+                              AliveCamelAdultMale,
+                              AliveCamelBabyFemale,
+                              AliveCamelAdultFemale,
 
-                              SlaughterGoat+SlaughterSheep+SlaughterCamel+SlaughterHorse,
-                              SlaughterGoatBabyMale+SlaughterSheepBabyMale+SlaughterCamelBabyMale+SlaughterHorseBabyMale,
-                              SlaughterGoatAdultMale+SlaughterSheepAdultMale+SlaughterCamelAdultMale+SlaughterHorseAdultMale,
-                              SlaughterGoatBabyFemale+SlaughterSheepBabyFemale+SlaughterCamelBabyFemale+SlaughterHorseBabyFemale,
-                              SlaughterGoatAdultFemale+SlaughterSheepAdultFemale+SlaughterCamelAdultFemale+SlaughterHorseAdultFemale,
+                              AliveHorse,
+                              AliveHorseBabyMale,
+                              AliveHorseAdultMale,
+                              AliveHorseBabyFemale,
+                              AliveHorseAdultFemale,
 
-                              AliveGoat+AliveSheep+AliveCamel+AliveHorse,
-                              AliveGoatBabyMale+AliveSheepBabyMale+AliveCamelBabyMale+AliveHorseBabyMale,
-                              AliveGoatAdultMale+AliveSheepAdultMale+AliveCamelAdultMale+AliveHorseAdultMale,
-                              AliveGoatBabyFemale+AliveSheepBabyFemale+AliveCamelBabyFemale+AliveHorseBabyFemale,
-                              AliveGoatAdultFemale+AliveSheepAdultFemale+AliveCamelAdultFemale+AliveHorseAdultFemale,
+                              AliveGoat,
+                              AliveGoatBabyMale,
+                              AliveGoatAdultMale,
+                              AliveGoatBabyFemale,
+                              AliveGoatAdultFemale,
 
-                              TotalGoat+TotalSheep+TotalCamel+TotalHorse);
+                              AliveGoat+AliveSheep+AliveCamel+AliveHorse);
                         },
                         child: Text("Total: "+(noOfGoats+noOfCamel+noOfSheeps+noOfHorse).toString(),style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
                       ),

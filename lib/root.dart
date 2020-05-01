@@ -301,7 +301,7 @@ class Root_state extends State<Root>{
           }
 
         }
-        else if(i["AnimalStatus"]=="DEAD"){
+        else if(i["AnimalStatus"]=="DIED"){
           DiedHorse++;
           if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
             DiedHorseBabyMale++;
@@ -389,7 +389,7 @@ class Root_state extends State<Root>{
           }
 
         }
-        else if(i["AnimalStatus"]=="DEAD"){
+        else if(i["AnimalStatus"]=="DIED"){
           DiedSheep++;
           if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
             DiedSheepBabyMale++;
@@ -486,7 +486,7 @@ class Root_state extends State<Root>{
           }
 
         }
-        else if(i["AnimalStatus"]=="DEAD"){
+        else if(i["AnimalStatus"]=="DIED"){
           DiedCamel++;
           if(i["AnimalSex"]=="Male" && i["AnimalAge"]=="Baby"){
             DiedCamelBabyMale++;
