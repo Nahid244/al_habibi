@@ -33,13 +33,18 @@ List<Anim> listofSheepSaleh=[];
 List<Anim> listofSheepRobby=[];
 List<Anim> listofSheepBarbi=[];
 List<Anim> listofSheepHarrayat=[];
+List<Anim> listofSheepProject=[];
 
 List<String> aAnimal=["GOAT","HORSE","SHEEP","CAMEL"];
 List<String> camelAnimal=['BIG','SMALL'];
 List<String> goatAnimal=["OMANI","SHAMMAL","NORMAL GOAT"];
-List<String> sheepAnimal=['TALLAL','SIMON','SALEH','ROBBY','BARBI','HARRYAT'];
+List<String> sheepAnimal=['TALLAL','SIMON','SALEH','ROBBY','BARBI','HARRYAT','PROJECT'];
 List<String> horseAnimal=['BEAUTY','RACING'];
 
+
+String chooseCatForUpdate=aAnimal[0];
+List<String> subAnimalForUpdate=goatAnimal;
+String chooseSubCatForUpdate=goatAnimal[0];
 ///vccDEt
 List<VccDetails> vccDetails=[];
 
@@ -154,11 +159,30 @@ String empAddTxt;
 String empPassTxt;
 
 List<String> animalTag=[];
+
 String tagChooseForMiss;
 String tagChooseForSlau;
 String tagChooseForVcc;
 String tagChooseForDied;
 
+List<String> animalTagForUpdate=[];
+List<String> animalTagForUpdateOmani=[];
+List<String> animalTagForUpdateShammal=[];
+List<String> animalTagForUpdateNg=[];
+
+List<String> animalTagForUpdateTallal=[];
+List<String> animalTagForUpdateSimon=[];
+List<String> animalTagForUpdateSaleh=[];
+List<String> animalTagForUpdateRobbi=[];
+List<String> animalTagForUpdateBarbi=[];
+List<String> animalTagForUpdateHarrayat=[];
+List<String> animalTagForUpdateProject=[];
+
+List<String> animalTagForUpdateBeauty=[];
+List<String> animalTagForUpdateRacing=[];
+
+List<String> animalTagForUpdateBig=[];
+List<String> animalTagForUpdateSmall=[];
 
 String diedTxt;
 String vccTxt;

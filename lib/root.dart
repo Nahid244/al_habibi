@@ -88,6 +88,24 @@ class Root_state extends State<Root>{
     motherListCamel.add("None");
 
 
+     animalTagForUpdateOmani.clear();
+     animalTagForUpdateShammal.clear();
+     animalTagForUpdateNg.clear();
+
+    animalTagForUpdateTallal.clear();
+     animalTagForUpdateSimon.clear();
+     animalTagForUpdateSaleh.clear();
+     animalTagForUpdateRobbi.clear();
+     animalTagForUpdateBarbi.clear();
+    animalTagForUpdateHarrayat.clear();
+     animalTagForUpdateProject.clear();
+
+    animalTagForUpdateBeauty.clear();
+     animalTagForUpdateRacing.clear();
+
+     animalTagForUpdateBig.clear();
+     animalTagForUpdateSmall.clear();
+
     String urll = 'https://alhabibifarm.secretdevbd.com/API/AllAnimals';
    // String url = 'https://alhabibifarm.secretdevbd.com/API/AnimalsByCategory';
     String url2='https://alhabibifarm.secretdevbd.com/API/AllOwner';
@@ -153,7 +171,8 @@ class Root_state extends State<Root>{
     for(var i in data["data"]){
       animalTag.add(i["AnimalTag"]);
       animalId.add(i["AnimalTag"]);
-
+      print("Tag");
+      print(i["AnimalTag"]);
       if(!ownerList.contains(i["AnimalOwner"])){
         ownerList.add(i["AnimalOwner"]);
       }
@@ -229,16 +248,18 @@ class Root_state extends State<Root>{
 
 
         if(i["AnimalBreed"]=="OMANI"){
+          animalTagForUpdateOmani.add(i["AnimalTag"]);
         listofGoatsOmani.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SHAMMAL"){
 
+          animalTagForUpdateShammal.add(i["AnimalTag"]);
 
         listofGoatsShammal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
 
       }
       else{
-
+          animalTagForUpdateNg.add(i["AnimalTag"]);
         listofGoatsNgoat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
         if(i["AnimalSex"]=="Male"){
@@ -323,9 +344,11 @@ class Root_state extends State<Root>{
 
 
         if(i["AnimalBreed"]=="BEAUTY"){
+          animalTagForUpdateBeauty.add(i["AnimalTag"]);
         listofHorseBeauty.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else {
+          animalTagForUpdateRacing.add(i["AnimalTag"]);
         listofHorseRacing.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
         if(i["AnimalSex"]=="Male"){
@@ -409,21 +432,31 @@ class Root_state extends State<Root>{
 
 
         if(i["AnimalBreed"]=="TALLAL"){
+          animalTagForUpdateTallal.add(i["AnimalTag"]);
         listofSheepTallal.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SIMON"){
+          animalTagForUpdateSimon.add(i["AnimalTag"]);
         listofSheepSimon.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="SALEH"){
+          animalTagForUpdateSaleh.add(i["AnimalTag"]);
         listofSheepSaleh.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="ROBBY"){
+          animalTagForUpdateRobbi.add(i["AnimalTag"]);
         listofSheepRobby.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else if(i["AnimalBreed"]=="HARRYAT"){
+          animalTagForUpdateHarrayat.add(i["AnimalTag"]);
         listofSheepHarrayat.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
+        else if(i["AnimalBreed"]=="PROJECT"){
+          animalTagForUpdateProject.add(i["AnimalTag"]);
+          listofSheepProject.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        }
       else{
+          animalTagForUpdateBarbi.add(i["AnimalTag"]);
         listofSheepBarbi.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
         if(i["AnimalSex"]=="Male"){
@@ -505,9 +538,11 @@ class Root_state extends State<Root>{
 
 
         if(i["AnimalBreed"]=="BIG"){
+          animalTagForUpdateBig.add(i["AnimalTag"]);
         listofCamelBig.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
       else {
+          animalTagForUpdateSmall.add(i["AnimalTag"]);
         listofCamelSmall.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
       }
         if(i["AnimalSex"]=="Male"){
@@ -636,7 +671,66 @@ class Root_state extends State<Root>{
     listOfSheep.add(listofSheepRobby);
     listOfSheep.add(listofSheepBarbi);
     listOfSheep.add(listofSheepHarrayat);
+    listOfSheep.add(listofSheepProject);
 
+
+    animalTagForUpdateOmani.add("Empty Omani");
+    animalTagForUpdateShammal.add("Empty Shammal");
+    animalTagForUpdateNg.add("Empty Normal Goat");
+
+    animalTagForUpdateTallal.add("Empty Tallal");
+    animalTagForUpdateSimon.add("Empty Simon");
+    animalTagForUpdateSaleh.add("Empty Saleh");
+    animalTagForUpdateRobbi.add("Empty Robbi");
+    animalTagForUpdateBarbi.add("Empty Barbi");
+    animalTagForUpdateHarrayat.add("Empty Harrayat");
+    animalTagForUpdateProject.add("Empty Project");
+
+    animalTagForUpdateBig.add("Empty Big");
+    animalTagForUpdateSmall.add("Empty Small");
+
+    animalTagForUpdateBeauty.add("Empty Beauty");
+    animalTagForUpdateRacing.add("Empty Racing");
+
+//    print(animalTagForUpdateOmani);
+//    print(animalTagForUpdateShammal);
+//    print(animalTagForUpdateNg);
+//
+//    print(animalTagForUpdateTallal);
+//    print(animalTagForUpdateSimon);
+//    print(animalTagForUpdateSaleh);
+//    print(animalTagForUpdateRobbi);
+//    print(animalTagForUpdateBarbi);
+//    print(animalTagForUpdateProject);
+//
+//    print(animalTagForUpdateBeauty);
+//    print(animalTagForUpdateRacing);
+//
+//    print(animalTagForUpdateBig);
+//    print(animalTagForUpdateSmall);
+
+//    animalTagForUpdateOmani.add("None1");
+//    animalTagForUpdateShammal.add("None1");
+//    animalTagForUpdateNg.add("None1");
+//
+//    animalTagForUpdateTallal.add("None1");
+//    animalTagForUpdateSimon.add("None1");
+//    animalTagForUpdateSaleh.add("None1");
+//    animalTagForUpdateRobbi.add("None1");
+//    animalTagForUpdateBarbi.add("None1");
+//    animalTagForUpdateHarrayat.add("None1");
+//    animalTagForUpdateProject.add("None1");
+//
+//    animalTagForUpdateBig.add("None1");
+//    animalTagForUpdateSmall.add("None1");
+//
+//    animalTagForUpdateBeauty.add("None1");
+//    animalTagForUpdateRacing.add("None1");
+    animalTagForUpdate=animalTagForUpdateOmani;
+
+//    print(animalTagForUpdateOmani);
+//    print(animalTagForUpdateShammal);
+//    print(animalTagForUpdateNg);
   //  if(ownerList.isEmpty){
 
      // ownerList.add("empty2");
@@ -658,7 +752,7 @@ class Root_state extends State<Root>{
     chooseOwnerForMultiAdd=ownerList[0];
     chooseFather=fatherListGoat[0];
     chooseMother=motherListGoat[0];
-    chooseAnimalId=animalId[0];
+    chooseAnimalId=animalTagForUpdateOmani[0];
 
     chooseOwnerForUpdate=ownerList[0];
     chooseFatherForUpdate=fatherListGoat[0];

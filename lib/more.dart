@@ -1547,6 +1547,187 @@ class Update_State extends State<Update>{
               Flexible(
                   flex: 1,
                   child: Center(
+                    child: Text("Catagory: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+                  )
+              ),
+              Flexible(
+                  flex: 1,
+                  child:   Center(
+                      child:DropdownButton<String>(
+                        value:chooseCatForUpdate ,
+                        icon: Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(
+                            color: Colors.deepPurple
+                        ),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        onChanged: (String newValue) {
+                          print(newValue);
+                          setState(() {
+                            chooseCatForUpdate = newValue;
+                            if(newValue=="GOAT"){
+                              subAnimalForUpdate=goatAnimal;
+
+                              // subAnimalChose=subAnimal[0];
+                            }
+                            else if(newValue=="HORSE"){
+                              subAnimalForUpdate=horseAnimal;
+                              fatherList=fatherListHorse;
+                              motherList=motherListHorse;
+                              // subAnimalChose=subAnimal[0];
+                            }
+                            else if(newValue=="SHEEP"){
+                              subAnimalForUpdate=sheepAnimal;
+                              fatherList=fatherListSheep;
+                              motherList=motherListSheep;
+                              // subAnimalChose=subAnimal[0];
+                            }
+                            else{
+                              subAnimalForUpdate=camelAnimal;
+                              fatherList=fatherListCamel;
+                              motherList=motherListCamel;
+                              // subAnimalChose=subAnimal[0];
+                            }
+                            chooseSubCatForUpdate=subAnimalForUpdate[0];
+
+                          });
+                        },
+                        items: aAnimal
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        })
+                            .toList(),
+                      )
+                  )
+              )
+            ],
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
+
+          ),
+          Row(
+            children: <Widget>[
+              Flexible(
+                  flex: 1,
+                  child: Center(
+                    child: Text("Breed: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+                  )
+              ),
+              Flexible(
+                  flex: 1,
+                  child:   Center(
+                      child:DropdownButton<String>(
+                        value:chooseSubCatForUpdate ,
+                        icon: Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(
+                            color: Colors.deepPurple
+                        ),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        onChanged: (String newValue) {
+                          // print(newValue);
+                          setState(() {
+                            chooseSubCatForUpdate = newValue;
+                          // animalTagForUpdate.clear();
+                           // print(animalTagForUpdateOmani);
+                            print(animalTagForUpdateShammal);
+                            print(animalTagForUpdateNg);
+                            if(newValue=="OMANI"){
+                               animalTagForUpdate=animalTagForUpdateOmani;
+
+
+
+                            }
+                            else if(newValue=="SHAMMAL"){
+
+                              animalTagForUpdate=animalTagForUpdateShammal;
+                            }
+                            else if(newValue=="NORMAL GOAT"){
+                              animalTagForUpdate=animalTagForUpdateNg;
+
+                            }
+
+                            else if(newValue=="TALLAL"){
+                              animalTagForUpdate=animalTagForUpdateTallal;
+
+                            }
+                            else if(newValue=="SIMMON"){
+                              animalTagForUpdate=animalTagForUpdateSimon;
+
+                            }
+                            else if(newValue=="SALEH"){
+                              animalTagForUpdate=animalTagForUpdateSaleh;
+
+                            }
+                            else if(newValue=="ROBBY"){
+                              animalTagForUpdate=animalTagForUpdateRobbi;
+
+                            }
+                            else if(newValue=="BARBI"){
+                              animalTagForUpdate=animalTagForUpdateBarbi;
+
+                            }
+                            else if(newValue=="HARRYAT"){
+                              animalTagForUpdate=animalTagForUpdateHarrayat;
+
+                            }
+                            else if(newValue=="PROJECT"){
+                              animalTagForUpdate=animalTagForUpdateProject;
+
+                            }
+
+                            else if(newValue=="BEAUTY"){
+                              animalTagForUpdate=animalTagForUpdateBeauty;
+
+                            }
+                            else if(newValue=="RACING"){
+                              animalTagForUpdate=animalTagForUpdateRacing;
+
+                            }
+                            else if(newValue=="BIG"){
+                              animalTagForUpdate=animalTagForUpdateBig;
+
+                            }
+                            else if(newValue=="SMALL"){
+                              animalTagForUpdate=animalTagForUpdateSmall;
+
+                            }
+                           print(animalTagForUpdate);
+
+                            chooseAnimalId=animalTagForUpdate[0];
+                            print(chooseAnimalId);
+                          });
+                        },
+                        items: subAnimalForUpdate
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        })
+                            .toList(),
+                      )
+                  )
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Flexible(
+                  flex: 1,
+                  child: Center(
                     child: Text("Animal Tag: ",style: TextStyle(color:Colors.black,fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
                   )
               ),
@@ -1569,25 +1750,10 @@ class Update_State extends State<Update>{
                           print(newValue);
                           setState(() {
                             chooseAnimalId = newValue;
-                            if(chooseAnimalId[0]=="G"){
-                              fatherList=fatherListGoat;
-                              motherList=motherListGoat;
-                            }
-                            else if(chooseAnimalId[0]=="H"){
-                              fatherList=fatherListHorse;
-                              motherList=motherListHorse;
-                            }
-                            else if(chooseAnimalId[0]=="S"){
-                              fatherList=fatherListSheep;
-                              motherList=motherListSheep;
-                            }
-                            else{
-                              fatherList=fatherListCamel;
-                              motherList=motherListCamel;
-                            }
+
                           });
                         },
-                        items: animalId
+                        items:animalTagForUpdate
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
