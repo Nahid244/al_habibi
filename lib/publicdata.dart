@@ -305,6 +305,7 @@ class Anim{
 // String AnimalWeight;
  String UpdatedDate;
  String age;
+ String details;
 
 
 
@@ -312,7 +313,7 @@ class Anim{
       this.AnimalID,  this.AnimalPictureName,
      this.AnimalSex, this.AnimalStatus,this.age,
      this.AnimalStatusDate, this.AnimalTag,
-     this.UpdatedDate);
+     this.UpdatedDate,this.details);
 
 
 

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:al_habibi/publicdata.dart';
 import 'package:image_picker/image_picker.dart';
 
+
 class More extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -319,7 +320,7 @@ class Search_State extends State<Search>{
 
   //  if(srchData.length==0){
       for(var i in data["data"]){
-        srchData.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"])));
+        srchData.add(Anim(IfNull(i["AddedDate"]),IfNull(i["AnimalBreed"]),IfNull(i["AnimalCategory"]),IfNull(i["AnimalID"]),IfNull(i["AnimalPictureName"]),IfNull(i["AnimalSex"]),IfNull(i["AnimalStatus"]),IfNull(i["AnimalAge"]),IfNull(i["AnimalStatusDate"]),IfNull(i["AnimalTag"]),IfNull(i["UpdatedDate"]),IfNull(i["details"])));
       }
    // }
     setState(() {
@@ -763,6 +764,7 @@ class AddAnimal_State extends State<AddAnimal>{
 
   List<String> motherList=motherListGoat;
   List<String> fatherList= fatherListGoat;
+  String details="No details";
   File file;
   void _choose() async {
     //file = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -794,6 +796,7 @@ class AddAnimal_State extends State<AddAnimal>{
 
         response.stream.transform(utf8.decoder).listen((value) {
           //String data=jsonDecode(value);
+          print(value);
           String a=value.replaceAll(":", ",");
           a=a.replaceAll("}", "");
           a=a.replaceAll("{", "");
@@ -827,7 +830,7 @@ class AddAnimal_State extends State<AddAnimal>{
     String s1=dayChooseforAddAnimal+'-'+monthChooseforAddAnimal+'-'+yearChooseforAddAnimal;
     String url = 'https://alhabibifarm.secretdevbd.com/API/AddAnimal';
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"AnimalCategory": "'+chooseAnimal+'","AnimalBreed": "'+chooseSubAnimal+'","AnimalSex": "'+chooseSex+'","AnimalAge": "'+chooseAgeForAdd+'","AnimalPictureName": "'+choosePicForAdd+'"}'; // make POST request
+    String json = '{"AnimalCategory": "'+chooseAnimal+'","AnimalBreed": "'+chooseSubAnimal+'","AnimalSex": "'+chooseSex+'","AnimalAge": "'+chooseAgeForAdd+'","AnimalPictureName": "'+choosePicForAdd+'","details": "'+details.toString()+'"}'; // make POST request
     print(json);
     var response = await http.post(url, headers: headers,
         body: json); // check the status code for the result
@@ -858,8 +861,25 @@ class AddAnimal_State extends State<AddAnimal>{
             padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
 
           ),
+          Padding(
+              padding: EdgeInsets.all(10),
+            child: TextField(
+              onChanged: (Text) {
+                details=Text.toString();
+              },
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.verified_user),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: InputBorder.none,
+                  hintText: 'Enter details'
+              ),
+            ),
+          )
+          ,
           Row(
             children: <Widget>[
+
               Flexible(
                   flex: 1,
                   child: Center(

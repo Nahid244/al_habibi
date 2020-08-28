@@ -856,7 +856,7 @@ class Home_State extends State<Home>{
 
 
                                         },
-                                        child: Text(loginName)
+                                        child: Text(loginName.toString())
                                     )
                                 ),
                                 Flexible(

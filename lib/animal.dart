@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:al_habibi/publicdata.dart';
+import 'dart:convert';
 
-//class Animal extends StatefulWidget{
-//  int subCatLength;
-//  List<String> subCat;
-//  String title;
-//
-//  Animal(int subCatLength,List<String> subCat,String title){
-//    this.subCatLength=subCatLength;
-//    this.subCat=subCat;
-//    this.title=title;
-//  }
-//
-//  @override
-//  State<StatefulWidget> createState() {
-//    // TODO: implement createState
-//    return Animal_State(subCatLength,subCat,title);
-//  }
-//
-//}
-class Animal extends StatelessWidget{
+import 'package:http/http.dart' as http;
+import 'package:flushbar/flushbar.dart';
+
+class Animal extends StatefulWidget{
   int subCatLength;
   List<String> subCat;
   String title;
@@ -27,6 +13,27 @@ class Animal extends StatelessWidget{
   List<List<Anim>> subCatList=[];
 
   Animal(int subCatLength,List<String> subCat,String title,List<List<Anim>> subCatList){
+    this.subCatLength=subCatLength;
+    this.subCat=subCat;
+    this.title=title;
+    this.subCatList=subCatList;
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return Animals(subCatLength,subCat,title,subCatList);
+  }
+
+}
+class Animals extends State<Animal>{
+  int subCatLength;
+  List<String> subCat;
+  String title;
+  bool scrolable;
+  List<List<Anim>> subCatList=[];
+
+  Animals(int subCatLength,List<String> subCat,String title,List<List<Anim>> subCatList){
     this.subCatLength=subCatLength;
     this.subCat=subCat;
     this.title=title;
@@ -40,7 +47,12 @@ class Animal extends StatelessWidget{
     }
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
 
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -177,7 +189,12 @@ class Animal extends StatelessWidget{
 
                   );
                 },
-              )
+              ),
+                               ),
+
+              Text("Details:",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+              Text(subCatList[idx][index].details,style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+
 //              Row(
 //                children: <Widget>[
 //                  Text("Added Date",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
@@ -458,10 +475,41 @@ class Animal extends StatelessWidget{
 
 
 
+           //   ),
+              IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: (){
+                    del(subCatList[idx][index].AnimalTag);
+                    if(title=="Sheep"){
+                      setState(() {
+                        listOfSheep[idx].removeAt(index);
+                      });
+
+
+                    }
+                    else if(title=="Goat"){
+                      setState(() {
+                        listOfGoat[idx].removeAt(index);
+                      });
+                    }
+                    else if(title=="Horse"){
+                      setState(() {
+                        listOfHorse[idx].removeAt(index);
+                      });
+                    }
+                    else if(title=="Camel"){
+                      setState(() {
+                        listOfCamel[idx].removeAt(index);
+                      });
+                    }
+
+                     print("hurre    $idx");
+                  }
               )
               ],
 
               ),
+
 
 //                                ExpansionTile(
 //                                  title:  Text("Vaccine Details", style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
@@ -498,6 +546,31 @@ class Animal extends StatelessWidget{
       ),
       )
     );
+  }
+  Future del(String tag)async{
+    String url = 'https://alhabibifarm.secretdevbd.com/API/Delete';
+   // var s=await http.post(url,body: {"TAG":tag});
+   // Map<String,dynamic> json=jsonDecode(s.body);
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"TAG": "' + tag + '"}';
+    print(json);
+    var response = await http.post(url, headers: headers, body: json);
+
+    Map <String,dynamic> j=jsonDecode(response.body);
+    if(j["status"]==1){
+       setState(() {
+         print("");
+       });
+       Flushbar(
+         message: "deleted",
+       ).show(context);
+    }
+    else{
+      Flushbar(
+        message: "error occured",
+      ).show(context);
+    }
+
   }
 
 
