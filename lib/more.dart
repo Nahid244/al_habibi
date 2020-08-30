@@ -778,7 +778,7 @@ class AddAnimal_State extends State<AddAnimal>{
 
     if(file!=null){
 
-      String url='https://alhabibifarm.secretdevbd.com/API/uploadFileAnimalPicture';
+      String url='https://alhabibifarm.secretdevbd.com/PHP/uploadImage.php';
 
 
       var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -1474,7 +1474,7 @@ class Update_State extends State<Update>{
 
   Future _imageupload() async{
     if(file!=null){
-      String url='https://alhabibifarm.secretdevbd.com/API/uploadFileAnimalPicture';
+      String url='https://alhabibifarm.secretdevbd.com/PHP/uploadImage.php';
 
 
       var request = http.MultipartRequest('POST', Uri.parse(url));
